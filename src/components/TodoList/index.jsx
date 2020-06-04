@@ -22,12 +22,12 @@ function TodoList(props) {
 
     return (
         <ul className="todo-list">
-            {todos.map(todo => (
+            {todos && todos.map(todo => (
                 <li
                     key={todo.id}
-                    onClick={() => handleClick(todo)}
                 >
                     {todo.title}
+                    <button style={{ marginLeft: "5px" }} onClick={() => handleClick(todo)} className="btn_Remove">Remove</button>
                 </li>
             ))}
         </ul >

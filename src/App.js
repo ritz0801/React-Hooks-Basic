@@ -1,23 +1,20 @@
 import React, { useState } from 'react';
-import ColorBox from './components/ColorBox';
 import TodoList from './components/TodoList';
 import TodoForm from './components/TodoForm';
 
 function App() {
-  const [todoList, setTodoList] = useState([
-    { id: 1, title: 'Có làm thì mới có ăn!' },
-    { id: 2, title: 'Không làm mà đòi ăn!' },
-    { id: 3, title: 'Chỉ có ăn ...!' },
-  ]);
+  const listStorage = JSON.parse(localStorage.getItem("list"));
+  const [todoList, setTodoList] = useState(listStorage ? listStorage : [])
 
-  const handleTodoClick = (todo) => {
+  const removeTodoClick = (todo) => {
     console.log(todo);
-    const index = todoList.findIndex(x => x.id === todo.id);
+    const index = JSON.parse(localStorage.getItem("list")).findIndex(x => x.id === todo.id);
     if (index < 0) return;
 
     const newTodoList = [...todoList];
     newTodoList.splice(index, 1);
     setTodoList(newTodoList);
+    localStorage.setItem("list", JSON.stringify(newTodoList))
   }
 
   const handleTodoFormSubmit = (formValues) => {
@@ -30,14 +27,14 @@ function App() {
     const newTodoList = [...todoList];
     newTodoList.push(newTodo);
     setTodoList(newTodoList);
+    localStorage.setItem("list", JSON.stringify(newTodoList));
   }
 
   return (
     <div className="App">
-      <h1>Welcome to React Hooks!</h1>
-      {/* <ColorBox /> */}
+      <h1>Todo List</h1>
       <TodoForm onSubmit={handleTodoFormSubmit} />
-      <TodoList todos={todoList} onTodoClick={handleTodoClick} />
+      <TodoList todos={todoList} onTodoClick={removeTodoClick} />
     </div>
   );
 }
