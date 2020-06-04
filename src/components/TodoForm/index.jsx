@@ -32,7 +32,7 @@ function TodoForm(props) {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form className="container text-center" onSubmit={handleSubmit}>
             <input
                 type="text"
                 value={value}

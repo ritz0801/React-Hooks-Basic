@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import './style.scss';
 
 TodoList.propTypes = {
     todos: PropTypes.array,
@@ -21,10 +22,11 @@ function TodoList(props) {
     }
 
     return (
-        <ul className="todo-list">
+        <ul className="todo-list container text-center mt-4">
             {todos && todos.map(todo => (
                 <li
                     key={todo.id}
+                    className="mb-3"
                 >
                     {todo.title}
                     <button style={{ marginLeft: "5px" }} onClick={() => handleClick(todo)} className="btn_Remove">Remove</button>

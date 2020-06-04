@@ -32,7 +32,7 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Todo List</h1>
+      <h1 className="text-center">Todo List</h1>
       <TodoForm onSubmit={handleTodoFormSubmit} />
       <TodoList todos={todoList} onTodoClick={removeTodoClick} />
     </div>
